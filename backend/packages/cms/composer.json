@@ -1,0 +1,12 @@
+{
+    "name": "user/laravel-cms",
+    "description": "A reusable Laravel package providing core CMS functionalities for multiple projects",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "User\\LaravelCms\\": "src/"
+        }
+    },
+    "require": {}
+}
