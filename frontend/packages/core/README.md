@@ -1,0 +1,1 @@
+Cor as package for extend base functionality for fronts part of projects
