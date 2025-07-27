@@ -3,10 +3,17 @@
     "description": "A reusable Laravel package providing core CMS functionalities for multiple projects",
     "type": "library",
     "license": "MIT",
+    "require": {},
     "autoload": {
         "psr-4": {
             "User\\LaravelCms\\": "src/"
         }
     },
-    "require": {}
+    "extra": {
+        "laravel": {
+            "providers": [
+                "User\\LaravelCms\\CmsServiceProvider"
+            ]
+        }
+    }
 }
