@@ -15,5 +15,6 @@
   composer install              and to install new 
 
 # Add dependecies nad other ro comoser.json
-  you must do composer dump-autoload
+  you must do composer dump-autoload or composer update user/laravel-cms if
+  version or dependecies has changed
 

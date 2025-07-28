@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "88970a0117c062eed55fa8728fc43833",
+    "content-hash": "95edb77d95848f07aa1f47712d0642d2",
     "packages": [
         {
             "name": "brick/math",
@@ -5560,6 +5560,36 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.3.0"
             },
             "time": "2024-12-21T16:25:41+00:00"
+        },
+        {
+            "name": "user/laravel-cms",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/cms",
+                "reference": "b9a5a90e804c5f0c814ae9cb8b0552f66d46493b"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "User\\LaravelCms\\Providers\\CmsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "User\\LaravelCms\\": "src/",
+                    "User\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A reusable Laravel package providing core CMS functionalities for multiple projects",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "vlucas/phpdotenv",
