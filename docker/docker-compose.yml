@@ -25,7 +25,7 @@ services:
     environment:
       - PROJECT=${PROJECT}
     volumes:
-      - ./templates/default.conf.template:/etc/nginx/templates
+      - ./templates/default.conf.template:/etc/nginx/templates/default.conf.template
       - ../backend/projects/${PROJECT}:/var/www/html/${PROJECT}
     networks:
       - laravel

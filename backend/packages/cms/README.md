@@ -9,3 +9,11 @@
     }
   ],
   add this "User\LaravelCms": "*" in require in composer on project to extend
+  then do 
+  rm -rf vendor composer.lock   to remove old vendor 
+  composer clear-cache          to clean cache
+  composer install              and to install new 
+
+# Add dependecies nad other ro comoser.json
+  you must do composer dump-autoload
+
