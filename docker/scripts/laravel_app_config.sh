@@ -2,6 +2,9 @@
 
 wait-for-it.sh mysql:3306 --timeout=60 --strict -- 
 
+chown -R www-data:www-data /var/www/html/${PROJECT}/storage /var/www/html/${PROJECT}/bootstrap/cache
+chmod -R 775 /var/www/html/${PROJECT}/storage /var/www/html/${PROJECT}/bootstrap/cache
+
 cd /var/www/html/${PROJECT}
 
 if [ ! -d "vendor" ]; then
