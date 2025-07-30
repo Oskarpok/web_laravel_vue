@@ -4,7 +4,6 @@ import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 import dotenv from 'dotenv';
-import tailwindcss from '@tailwindcss/vite';
 
 dotenv.config({ path: resolve('/docker/.env') });
 
@@ -24,7 +23,6 @@ export default defineConfig({
       publicDirectory: `../../html/${process.env.PROJECT}/public`,
       refresh: true
     }),
-    tailwindcss(),
     vue()
   ],
 });
