@@ -12,8 +12,12 @@ return new class extends Migration {
     Schema::create('params', function (Blueprint $table) {
       $table->id();
       $table->string('name')->unique();
-      $table->integer('type')->default(0);
-      $table->json('value');
+      $table->string('type')->default(0); 
+      $table->string('value_string')->nullable();
+      $table->integer('value_int')->nullable();
+      $table->float('value_float')->nullable();
+      $table->boolean('value_bool')->nullable();
+      $table->json('value_json')->nullable();
       $table->timestamps();
     });
   }

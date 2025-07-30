@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace User\LaravelCms\Enums;
 
 enum ParamsType: int {
-  case Unverified = 0;
   case Integer = 1;
   case Float = 2;
   case String = 3;
   case Boolean = 4;
-  case Object = 5;
-  case Json = 6;
+  case Json = 5;
   
   public function label(): string {
     return match($this) {
@@ -20,7 +18,6 @@ enum ParamsType: int {
       self::Float => 'Float',
       self::String => 'String',
       self::Boolean => 'Boolean',
-      self::Object => 'Object',
       self::Json => 'Json',
     };
   }
