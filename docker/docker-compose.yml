@@ -12,6 +12,8 @@ services:
     volumes:
       - ../backend/projects/${PROJECT}:/var/www/html/${PROJECT}
       - ../backend/packages/cms:/var/www/packages/cms
+      - ./scripts/laravel_app_config.sh:/docker/scripts/laravel_app_config.sh
+    command: ["sh", "/docker/scripts/laravel_app_config.sh"]
     networks:
       - laravel
     depends_on:
