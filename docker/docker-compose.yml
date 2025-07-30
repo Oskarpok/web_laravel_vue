@@ -65,6 +65,24 @@ services:
     depends_on:
       - mysql
 
+  node:
+    image: node:18
+    container_name: laravel_node
+    working_dir: /var/www/packages/cms
+    environment:
+      - PROJECT=${PROJECT}
+    volumes:
+      - ../backend/projects/${PROJECT}:/var/www/html/${PROJECT}
+      - ../backend/packages/cms:/var/www/packages/cms
+      - ./.env:/docker/.env:ro
+    command: ["sh", "-c", "npm install && npm install dotenv && npm run dev"]
+    ports:
+      - "5173:5173"
+    networks:
+      - laravel
+    depends_on:
+      - app
+
 networks:
   laravel:
     driver: bridge
