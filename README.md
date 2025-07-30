@@ -7,3 +7,7 @@
   podman-compose up --build
 
   if you have problems with permission use chown -R www-data:www-data .
+  or in container use 
+  podman exec -it laravel_app bash 
+  chown -R www-data:www-data bentley/storage 
+  chmod -R 775 bentley/storage
