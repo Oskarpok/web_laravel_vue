@@ -12,7 +12,7 @@ class ParamsSeeder extends Seeder {
     Param::create([
       'name' => 'address',
       'type' => ParamsType::Json->value,
-      'value' => json_encode([
+      'val_json' => json_encode([
         'country' => 'Poland',
         'street' => 'Main St',
         'street_number' => '1A',
@@ -24,22 +24,22 @@ class ParamsSeeder extends Seeder {
     Param::create([
       'name' => 'telefon',
       'type' => ParamsType::Integer->value,
-      'value' => '123456789',
+      'val_int' => '123456789',
     ]);
     Param::create([
       'name' => 'project_name',
       'type' => ParamsType::String->value,
-      'value' => 'testtest',
+      'val_string' => 'testtest',
     ]);
     Param::create([
       'name' => 'tax_number',
       'type' => ParamsType::Integer->value,
-      'value' => '0123456789',
+      'val_int' => '0123456789',
     ]);
     Param::create([
       'name' => 'email',
       'type' => ParamsType::String->value,
-      'value' => 'test@gmail.com',
+      'val_string' => 'test@gmail.com',
     ]);
   }
 }

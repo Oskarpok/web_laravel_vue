@@ -11,9 +11,9 @@ trait DefaultModel {
    * expand this array on them
    */
 
-  protected $appends = ['is_active_label'];
+  protected $defaultAppends = ['is_active_label'];
 
-  protected $fillable = ['is_active'];
+  protected $defaultFillable = ['is_active'];
 
   protected string $dateFormat = 'd.m.Y H:i';
   

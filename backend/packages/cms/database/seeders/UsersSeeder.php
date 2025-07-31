@@ -16,7 +16,7 @@ class UsersSeeder extends Seeder {
       'first_name' => 'admin_admin',
       'sur_name' => 'admin_admin_admin',
       'phone' => '48234567891',
-      'type' => UsersType::Admin->value,
+      'type' => UsersType::Administrator->value,
       'email' => 'admin@example.com',
       'password' => 'admin!1234',
     ]);
