@@ -49,7 +49,7 @@ trait DefaultController {
    */
   public function index(Request $request) {
     $data = $this->indexPrepare($request);
-    return view(static::CRUD_VIEWS . 'index',[
+    return view('index',[
       'data' => $data,
       'title' => $this->titles()['index'] ?? '',
     ]);

@@ -7,9 +7,9 @@ namespace User\LaravelCms\Http\Controllers\Cms;
 use Illuminate\Http\Request;
 use User\LaravelCms\Http\Controllers\BaseController;
 
-class ParamController extends BaseController {
+class UserController extends BaseController {
 
-  protected const MODEL_CLASS = \User\LaravelCms\Models\Cms\Param::class;
+  protected const MODEL_CLASS = \User\LaravelCms\Models\Cms\User::class;
 
   protected function titles(): array {
     return [
