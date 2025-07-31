@@ -14,8 +14,6 @@ trait DefaultModel {
   protected $defaultAppends = ['is_active_label'];
 
   protected $defaultFillable = ['is_active'];
-
-  protected string $dateFormat = 'd.m.Y H:i';
   
   /**
    * Defines the validation rules for the model's attributes.
