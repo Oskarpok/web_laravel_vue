@@ -8,25 +8,13 @@ use Illuminate\Http\Request;
 
 trait DefaultController {
 
-  protected const CRUD_VIEWS = 'cms::components.crud_views.';
-
   /**
    * The fully qualified class name of the model associated with the controller
    * This must be set in the child controller
    * 
    * @var string
    */
-  protected const MODEL_CLASS = '';
-
-  /**
-   * Route name for operations must be overridden in child controllers
-   */
-  protected const ROUTE_NAME = '';
-
-  /**
-   * Module name for operations must be overridden in child controllers
-   */
-  protected const MODULE_NAME = '';
+  protected const MODEL_CLASS = null;
 
   /**
    * Return an array of form fields used in the create show edit views
