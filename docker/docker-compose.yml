@@ -9,6 +9,7 @@ services:
     working_dir: /var/www
     environment:
       - PROJECT=${PROJECT}
+      - RUN_SEEDERS=${RUN_SEEDERS}
     volumes:
       - ../backend/projects/${PROJECT}:/var/www/html/${PROJECT}
       - ../backend/packages/cms:/var/www/packages/cms
