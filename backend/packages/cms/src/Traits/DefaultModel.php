@@ -24,7 +24,7 @@ trait DefaultModel {
   abstract public static function validationRules(): array;
 
   protected function serializeDate(\DateTimeInterface $date){
-    return $date->format($this->dateFormat);
+    return $date->format('Y-m-d H:i:s');
   }
 
   public function getIsActiveLabelAttribute(): ?string {

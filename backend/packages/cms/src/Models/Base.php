@@ -15,8 +15,6 @@ abstract class Base extends Model {
 
   use DefaultModel;
 
-  protected $dateFormat = 'd.m.Y H:i';
-
   public function __construct(array $attributes = []) {
     parent::__construct($attributes);
     $this->appends = [...$this->defaultAppends, ...$this->appends ?? []];
