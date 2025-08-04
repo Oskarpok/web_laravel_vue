@@ -11,6 +11,6 @@
     @vite(['resources/css/cms.css', 'resources/js/cms.js'])
 	</head>
 	<body class="cms-primary-color text-white">
-		<div id='app'></div>
+		<div id='app' data-view="{{ $view }}" data-props='@json($data)'></div>
 	</body>
 </html>

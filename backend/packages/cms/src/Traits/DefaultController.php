@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 trait DefaultController {
 
+  protected const CRUD_VIEWS = 'components/crud_views/';
+  protected const ENTRY_POINT_VIEWS = 'cms::dashboard';
+  
   /**
    * The fully qualified class name of the model associated with the controller
    * This must be set in the child controller
@@ -49,9 +52,12 @@ trait DefaultController {
    */
   public function index(Request $request) {
     $data = $this->indexPrepare($request);
-    return view('index',[
-      'data' => $data,
-      'title' => $this->titles()['index'] ?? '',
+    return view(self::ENTRY_POINT_VIEWS, [
+      'view' => self::CRUD_VIEWS . 'index',
+      'data' => [
+        'records' => $data['data'],
+        'title' => $this->titles()['index'] ?? '',
+      ],
     ]);
   }
 

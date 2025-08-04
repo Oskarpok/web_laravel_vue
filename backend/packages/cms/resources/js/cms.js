@@ -1,4 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const el = document.getElementById('app')
+const component = el.dataset.view
+const props = JSON.parse(el.dataset.props)
+
+createApp(App, {
+  component: component,
+  props: props
+}).mount('#app')
