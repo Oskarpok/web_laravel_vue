@@ -14,6 +14,9 @@ class ParamController extends BaseController {
   protected function titles(): array {
     return [
       'index' => 'Parameters Panel',
+      'create' => 'Parameters Create Panel',
+      'edit' => 'Parameters Edit Panel',
+      'show' => 'Parameters Show Panel',
     ];
   }
 

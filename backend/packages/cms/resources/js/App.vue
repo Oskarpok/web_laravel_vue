@@ -9,7 +9,6 @@ const { component, props } = defineProps(['component', 'props'])
 const pageComponent = ref(null)
 const components = import.meta.glob([
   './components/**/*.vue',
-  './pages/**/*.vue',
   './views/**/*.vue'
 ])
 

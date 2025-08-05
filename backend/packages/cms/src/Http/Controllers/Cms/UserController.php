@@ -13,7 +13,10 @@ class UserController extends BaseController {
 
   protected function titles(): array {
     return [
-      'index' => 'Parameters Panel',
+      'index' => 'Users Panel',
+      'create' => 'Users Create Panel',
+      'edit' => 'Users Edit Panel',
+      'show' => 'Users Show Panel',
     ];
   }
 
