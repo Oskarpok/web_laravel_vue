@@ -10,7 +10,7 @@ class ExtraTypeController extends BaseField {
 
   protected function controlMap(): array {
     return [
-      //
+      'table' => Fields\TableControl::class,
     ];
   }
 

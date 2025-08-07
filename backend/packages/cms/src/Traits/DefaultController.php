@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace User\LaravelCms\Traits;
 
 use Illuminate\Http\Request;
+use User\LaravelCms\View\FormFields\Extra\ExtraTypeController;
 
 trait DefaultController {
 
@@ -52,13 +53,103 @@ trait DefaultController {
    */
   public function index(Request $request) {
     $data = $this->indexPrepare($request);
-    return view(self::ENTRY_POINT_VIEWS, [
+    return dd(self::ENTRY_POINT_VIEWS, [
       'view' => self::CRUD_VIEWS . 'index',
       'data' => [
-        'records' => $data['data'],
+        'table' => new ExtraTypeController([
+          'type' => 'table',
+          'labels' => $data['labels'],
+          'filterable' => $data['filterable'],
+          'data' => $data['data'],
+        ]),
+        'buttons' => $data['buttons'],
         'title' => $this->titles()['index'] ?? '',
       ],
     ]);
+  }
+
+
+  /**
+   * Displays the form view for creating a new record
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create() {
+    return view(static::ENTRY_POINT_VIEWS, [
+      'view' => self::CRUD_VIEWS . 'create',
+      'data' => [
+        'title' => $this->titles()['index'] ?? '',
+      ],
+    ]);
+  }
+
+  /**
+   * Handles storing a new record
+   *
+   * @param \Illuminate\Http\Request $request
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function store(Request $request) {
+    //
+  }
+
+  /**
+   * Displays the details of a single record
+   *
+   * @param  int  $id  The ID of the record to display
+   * @return \Illuminate\Http\Response
+   */
+  public function show(int $id) {
+    return view(static::ENTRY_POINT_VIEWS, [
+      'view' => self::CRUD_VIEWS . 'show',
+      'data' => [
+        'title' => $this->titles()['index'] ?? '',
+      ],
+    ]);
+  }
+
+  /**
+   * Displays a form for editing an existing record
+   *
+   * @param  int  $id  The ID of the record to be edited
+   * @return \Illuminate\Http\Response
+   */
+  public function edit(int $id) {
+    return view(static::ENTRY_POINT_VIEWS, [
+      'view' => self::CRUD_VIEWS . 'edit',
+      'data' => [
+        'title' => $this->titles()['index'] ?? '',
+      ],
+    ]);
+  }
+
+  /**
+   * Updates an existing record identified by its ID.
+   *
+   * @param \Illuminate\Http\Request $request The request object containing data
+   * @param int $id The ID of the record to update.
+   * @return \Illuminate\Http\RedirectResponse Redirects back to the edit form
+   */
+  public function update(Request $request, int $id) {
+    //
+  }
+
+  /**
+   * Deletes a model record by ID
+   *
+   * @param  int  $id  The ID of the record to delete.
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function destroy(int $id) {
+    //
+  }
+
+
+
+  protected function callHook(string $hook, ...$params): void {
+    if (method_exists($this, $hook)) {
+      $this->$hook(...$params);
+    }
   }
 
 }

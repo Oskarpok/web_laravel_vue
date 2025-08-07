@@ -23,6 +23,17 @@ class ParamController extends BaseController {
   protected function indexPrepare(Request $request): array {
     return [
       'data' => self::MODEL_CLASS::all(), 
+      'labels' => [
+        'Id', 'Name', 'Type', 'Value', 'Created at', 'Updated at', 'Actions',
+      ],
+      'filterable' => [
+        'id' => true, 'name' => true, 'type' => true, 'value' => false, 
+        'created_at' => true, 'updated_at' => true,
+      ], 
+      'buttons' => [
+
+      ],
+      
     ];
   }
 
