@@ -53,15 +53,15 @@ trait DefaultController {
    */
   public function index(Request $request) {
     $data = $this->indexPrepare($request);
-    return dd(self::ENTRY_POINT_VIEWS, [
+    return view(self::ENTRY_POINT_VIEWS, [
       'view' => self::CRUD_VIEWS . 'index',
       'data' => [
-        'table' => new ExtraTypeController([
+        'table' => (new ExtraTypeController([
           'type' => 'table',
           'labels' => $data['labels'],
           'filterable' => $data['filterable'],
           'data' => $data['data'],
-        ]),
+        ]))->serialize(),
         'buttons' => $data['buttons'],
         'title' => $this->titles()['index'] ?? '',
       ],
@@ -90,7 +90,14 @@ trait DefaultController {
    * @return \Illuminate\Http\RedirectResponse
    */
   public function store(Request $request) {
-    //
+    $this->callHook('beforeStore', $request);
+    $model = $this->getModelInstance()->fill($request->all());
+
+    if($model->save()) {
+      $this->callHook('afterStore', $request, $model);
+    }
+    // if not seved 
+
   }
 
   /**
@@ -131,7 +138,14 @@ trait DefaultController {
    * @return \Illuminate\Http\RedirectResponse Redirects back to the edit form
    */
   public function update(Request $request, int $id) {
-    //
+    $this->callHook('beforeUpdate', $request);
+    $model = $this->getModelInstance()->findOrFail($id)->fill($request->all());
+
+    if($model->update()) {
+      $this->callHook('afterUpdate', $request, $model);
+    }
+    // if not seved 
+
   }
 
   /**
@@ -141,7 +155,8 @@ trait DefaultController {
    * @return \Illuminate\Http\RedirectResponse
    */
   public function destroy(int $id) {
-    //
+    $this->getModelInstance()->findOrFail($id)->delete();
+    
   }
 
 

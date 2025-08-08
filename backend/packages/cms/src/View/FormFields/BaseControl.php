@@ -16,6 +16,17 @@ abstract class BaseControl {
 
   abstract protected function resolveView(): string;
 
+  public function serialize(): array {
+    $data = [];
+    
+    foreach ((new \ReflectionClass($this))->getProperties() as $property) {
+      $property->setAccessible(true);
+      $data[$property->getName()] = $property->getValue($this);
+    }
+
+    return $data;
+  }
+  
   public function getType() {
     return $this->type;
   }

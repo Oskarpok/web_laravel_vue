@@ -23,8 +23,7 @@ class TableControl extends BaseExtraField {
   }
 
   protected function resolveView(): string {
-    return 'components/cms_fields/extra/table';
+    return 'components/cms_fields/extra/Table';
   }
-
 
 }

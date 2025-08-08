@@ -22,4 +22,8 @@ abstract class BaseField {
     return $this->resolved->getType();
   }
 
+  public function serialize(): array {
+    return $this->resolved->serialize();
+  }
+
 }

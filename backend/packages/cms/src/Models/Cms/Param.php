@@ -5,12 +5,17 @@ declare(strict_types=1);
 namespace User\LaravelCms\Models\Cms;
 
 use User\LaravelCms\Models\Base;
+use User\LaravelCms\Enums\ParamsType;
 
 class Param extends Base {
   
   protected $fillable = [
-    'name', 'type', 'val_string', 'val_int', 'val_float', 'val_bool', 'val_json'
+    'name', 'type', 'val_string', 'val_int', 'val_float', 'val_bool', 'val_json',
   ];
+
+  public function getTypeAttribute(): string {
+    return ParamsType::toArray()[$this->attributes['type']];
+  }
  
   public static function validationRules(): array {
     return [
