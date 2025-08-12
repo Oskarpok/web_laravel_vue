@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace User\LaravelCms\View\FormFields;
 
-abstract class BaseField {
+abstract class BaseField implements \JsonSerializable {
 
   protected $resolved;
 
@@ -22,7 +22,7 @@ abstract class BaseField {
     return $this->resolved->getType();
   }
 
-  public function serialize(): array {
+  public function jsonSerialize(): mixed {
     return $this->resolved->serialize();
   }
 
