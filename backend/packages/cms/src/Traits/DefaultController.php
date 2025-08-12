@@ -78,7 +78,7 @@ trait DefaultController {
     return view(static::ENTRY_POINT_VIEWS, [
       'view' => self::CRUD_VIEWS . 'create',
       'data' => [
-        'title' => $this->titles()['index'] ?? '',
+        'title' => $this->titles()['create'] ?? '',
       ],
     ]);
   }
@@ -110,7 +110,8 @@ trait DefaultController {
     return view(static::ENTRY_POINT_VIEWS, [
       'view' => self::CRUD_VIEWS . 'show',
       'data' => [
-        'title' => $this->titles()['index'] ?? '',
+        'title' => $this->titles()['show'] ?? '',
+        'record' => $this->getModelInstance()->findOrFail($id),
       ],
     ]);
   }
@@ -125,7 +126,9 @@ trait DefaultController {
     return view(static::ENTRY_POINT_VIEWS, [
       'view' => self::CRUD_VIEWS . 'edit',
       'data' => [
-        'title' => $this->titles()['index'] ?? '',
+        'id' => $id,
+        'title' => $this->titles()['edit'] ?? '',
+        'record' => $this->getModelInstance()->findOrFail($id),
       ],
     ]);
   }
@@ -156,7 +159,6 @@ trait DefaultController {
    */
   public function destroy(int $id) {
     $this->getModelInstance()->findOrFail($id)->delete();
-    
   }
 
 
