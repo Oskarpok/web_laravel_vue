@@ -10,7 +10,9 @@ class TextsTypeController extends BaseField {
 
   protected function controlMap(): array {
     return [
-      //
+      'text' => Fields\TextField::class,
+      'text_area' => Fields\TextAreaControl::class,
+      'number' => Fields\NumberControl::class,
     ];
   }
 
