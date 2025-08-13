@@ -16,7 +16,7 @@ class TextAreaControl extends BaseTextsField {
   }
 
   protected function resolveView(): string {
-    return 'components/cms_fields/Texts/';
+    return 'text/TextArea.vue';
   }
 
 }

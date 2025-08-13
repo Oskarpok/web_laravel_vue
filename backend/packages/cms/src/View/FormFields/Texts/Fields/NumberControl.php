@@ -24,7 +24,7 @@ class NumberControl extends BaseTextsField {
   }
 
   protected function resolveView(): string {
-    return 'components/cms_fields/Texts/Number';
+    return 'text/Number.vue';
   }
 
 }
