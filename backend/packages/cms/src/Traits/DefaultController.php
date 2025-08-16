@@ -61,7 +61,7 @@ trait DefaultController {
           'labels' => $data['labels'],
           'filterable' => $data['filterable'],
           'data' => $data['data'],
-        ]))->serialize(),
+        ])),
         'buttons' => $data['buttons'],
         'title' => $this->titles()['index'] ?? '',
       ],
@@ -79,6 +79,7 @@ trait DefaultController {
       'view' => self::CRUD_VIEWS . 'create',
       'data' => [
         'title' => $this->titles()['create'] ?? '',
+        'fields' => $this->prepareFormFieldsForCrud(),
       ],
     ]);
   }
@@ -111,7 +112,9 @@ trait DefaultController {
       'view' => self::CRUD_VIEWS . 'show',
       'data' => [
         'title' => $this->titles()['show'] ?? '',
-        'record' => $this->getModelInstance()->findOrFail($id),
+        'fields' => $this->prepareFormFieldsForCrud(
+          $this->getModelInstance()->findOrFail($id)
+        ),
       ],
     ]);
   }
@@ -123,12 +126,13 @@ trait DefaultController {
    * @return \Illuminate\Http\Response
    */
   public function edit(int $id) {
+    $record = $this->getModelInstance()->findOrFail($id);
     return view(static::ENTRY_POINT_VIEWS, [
       'view' => self::CRUD_VIEWS . 'edit',
       'data' => [
         'id' => $id,
         'title' => $this->titles()['edit'] ?? '',
-        'record' => $this->getModelInstance()->findOrFail($id),
+        'fields' => $this->prepareFormFieldsForCrud($record),
       ],
     ]);
   }

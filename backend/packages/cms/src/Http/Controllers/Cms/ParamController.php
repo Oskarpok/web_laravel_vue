@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace User\LaravelCms\Http\Controllers\Cms;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use User\LaravelCms\Http\Controllers\BaseController;
+use User\LaravelCms\View\FormFields\Texts\TextsTypeController;
 
 class ParamController extends BaseController {
 
@@ -38,8 +40,24 @@ class ParamController extends BaseController {
   }
 
   protected function prepareFormFieldsForCrud($data = null): array {
+    $currentRoute = Route::currentRouteName();
     return [
-      //
+      new TextsTypeController([
+        'type' => 'number',
+        'name' => 'id',
+        'label' => 'ID',
+        'value' => $data?->id,
+        'readonly' => true,
+      ]),
+      new TextsTypeController([
+        'type' => 'text',
+        'name' => 'name',
+        'label' => 'Nazwa',
+        'value' => $data?->name,
+        'required' => true,
+        'readonly' => false,
+      ]),
+
     ];
   }
 
