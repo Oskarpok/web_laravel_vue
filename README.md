@@ -9,5 +9,5 @@
   if you have problems with permission use chown -R www-data:www-data .
   or in container use 
   podman exec -it laravel_app bash 
-  chown -R www-data:www-data bentley/storage 
-  chmod -R 775 bentley/storage
+  chown -R www-data:www-data html/bentley/storage 
+  chmod -R 775 html/bentley/storage
