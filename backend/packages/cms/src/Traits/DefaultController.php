@@ -19,6 +19,11 @@ trait DefaultController {
   protected const MODEL_CLASS = null;
 
   /**
+   * 
+   */
+  protected const ROUTE_NAME = null;
+
+  /**
    * Return an array of form fields used in the create show edit views
    *
    * @return array List of fields elements for the given controller
