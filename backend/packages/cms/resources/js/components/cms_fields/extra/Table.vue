@@ -5,16 +5,15 @@ const props = defineProps({
   labels: Array,
   data: Array,
   filterable: Object,
-  destinations: String,
   filtersInitial: Object
 })
 
 const emit = defineEmits(['filter'])
-
 const filters = reactive({ ...props.filtersInitial })
+const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
 function route(name = null, id = null) {
-  const base = window.location.pathname.split('/')[1] || ''
+  const base = 'cms/' + window.location.pathname.split('/')[2] || ''
 
   switch (name) {
     case 'destroy':
@@ -27,8 +26,6 @@ function route(name = null, id = null) {
       return `/${base}`
   }
 }
-
-const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
 function confirmDelete(event, id) {
   if (confirm('Na pewno chcesz usunąć?')) {
@@ -60,6 +57,7 @@ function confirmDelete(event, id) {
                 bg-gray-900 placeholder-gray-400 border border-gray-600 
                 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
           </th>
+
           <th class="px-2 py-2 border border-gray-700 text-center">
             <button type="submit"
               class="bg-blue-600 hover:bg-blue-500 text-white text-sm 
@@ -77,6 +75,7 @@ function confirmDelete(event, id) {
             class="px-3 py-2 border border-gray-700">
             {{ row[key] }}
           </td>
+          
           <td class="w-27 px-4 py-2 border border-gray-700 text-center space-x-2">
             <a :href="route('show', row.id)" title="Zobacz" 
               class="text-sky-400 hover:text-sky-300">

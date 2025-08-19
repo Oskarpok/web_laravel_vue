@@ -1,11 +1,13 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp, h } from 'vue'
+import { createInertiaApp } from '@inertiajs/vue3'
 
-const el = document.getElementById('app')
-const component = el.dataset.view
-const props = JSON.parse(el.dataset.props)
-
-createApp(App, {
-  component: component,
-  props: props
-}).mount('#app')
+createInertiaApp({
+  resolve: name => {
+    return import(`./${name}.vue`)
+  },
+  setup({ el, App, props, plugin }) {
+    createApp({ render: () => h(App, props) })
+      .use(plugin)
+      .mount(el)
+  },
+})

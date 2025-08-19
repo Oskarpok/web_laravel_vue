@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace User\LaravelCms\Traits;
 
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use User\LaravelCms\View\FormFields\Extra\ExtraTypeController;
 
 trait DefaultController {
-
-  protected const CRUD_VIEWS = 'components/crud_views/';
-  protected const ENTRY_POINT_VIEWS = 'cms::dashboard';
   
   /**
    * The fully qualified class name of the model associated with the controller
@@ -53,18 +51,15 @@ trait DefaultController {
    */
   public function index(Request $request) {
     $data = $this->indexPrepare($request);
-    return view(self::ENTRY_POINT_VIEWS, [
-      'view' => self::CRUD_VIEWS . 'index',
-      'data' => [
-        'table' => (new ExtraTypeController([
-          'type' => 'table',
-          'labels' => $data['labels'],
-          'filterable' => $data['filterable'],
-          'data' => $data['data'],
-        ])),
-        'buttons' => $data['buttons'],
-        'title' => $this->titles()['index'] ?? '',
-      ],
+    return Inertia::render('components/crud_views/index', [
+      'table' => (new ExtraTypeController([
+        'type' => 'table',
+        'labels' => $data['labels'],
+        'filterable' => $data['filterable'],
+        'data' => $data['data'],
+      ])),
+      'buttons' => $data['buttons'],
+      'title' => $this->titles()['index'] ?? '',
     ]);
   }
 
@@ -75,12 +70,9 @@ trait DefaultController {
    * @return \Illuminate\Http\Response
    */
   public function create() {
-    return view(static::ENTRY_POINT_VIEWS, [
-      'view' => self::CRUD_VIEWS . 'create',
-      'data' => [
-        'title' => $this->titles()['create'] ?? '',
-        'fields' => $this->prepareFormFieldsForCrud(),
-      ],
+    return Inertia::render('components/crud_views/create', [
+      'title' => $this->titles()['create'] ?? '',
+      'fields' => $this->prepareFormFieldsForCrud(),
     ]);
   }
 
@@ -108,14 +100,11 @@ trait DefaultController {
    * @return \Illuminate\Http\Response
    */
   public function show(int $id) {
-    return view(static::ENTRY_POINT_VIEWS, [
-      'view' => self::CRUD_VIEWS . 'show',
-      'data' => [
-        'title' => $this->titles()['show'] ?? '',
-        'fields' => $this->prepareFormFieldsForCrud(
-          $this->getModelInstance()->findOrFail($id)
-        ),
-      ],
+    return Inertia::render('components/crud_views/show', [
+      'title' => $this->titles()['show'] ?? '',
+      'fields' => $this->prepareFormFieldsForCrud(
+        $this->getModelInstance()->findOrFail($id)
+      ),
     ]);
   }
 
@@ -127,13 +116,10 @@ trait DefaultController {
    */
   public function edit(int $id) {
     $record = $this->getModelInstance()->findOrFail($id);
-    return view(static::ENTRY_POINT_VIEWS, [
-      'view' => self::CRUD_VIEWS . 'edit',
-      'data' => [
-        'id' => $id,
-        'title' => $this->titles()['edit'] ?? '',
-        'fields' => $this->prepareFormFieldsForCrud($record),
-      ],
+    return Inertia::render('components/crud_views/edit', [
+      'id' => $id,
+      'title' => $this->titles()['edit'] ?? '',
+      'fields' => $this->prepareFormFieldsForCrud($record),
     ]);
   }
 
@@ -162,10 +148,10 @@ trait DefaultController {
    * @return \Illuminate\Http\RedirectResponse
    */
   public function destroy(int $id) {
+    $this->callHook('beforeDestroy', $id);
     $this->getModelInstance()->findOrFail($id)->delete();
+    $this->callHook('afterDestroy', $id);
   }
-
-
 
   protected function callHook(string $hook, ...$params): void {
     if (method_exists($this, $hook)) {
