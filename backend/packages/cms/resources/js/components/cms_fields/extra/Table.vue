@@ -21,7 +21,6 @@ function route(name = null, id = null) {
     case 'show':
       return `/${base}/${id}${name === 'edit' ? '/edit' : ''}`
 
-
     default:
       return `/${base}`
   }
