@@ -5,7 +5,6 @@ const props = defineProps({
   title: String,
   fields: Array,
 })
-
 </script>
 
 <template>
@@ -20,12 +19,10 @@ const props = defineProps({
         <div class="flex gap-x-2">
 
         </div>
-
       </div>
       <div class="w-full mx-auto p-6 shadow rounded-2xl space-y-6 text-gray-200 
         border border-gray-600 flex flex-wrap gap-5 place-items-center">
-        <RenderField
-          v-for="(field, idx) in fields"
+        <RenderField v-for="(field, idx) in fields"
           :key="idx"
           :field="field"
         />
