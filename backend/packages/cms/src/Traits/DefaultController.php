@@ -77,7 +77,7 @@ trait DefaultController {
   public function create() {
     return Inertia::render('components/crud_views/create', [
       'title' => $this->titles()['create'] ?? '',
-      'fields' => $this->prepareFormFieldsForCrud(),
+      'data' => $this->prepareFormFieldsForCrud(),
     ]);
   }
 
@@ -107,7 +107,7 @@ trait DefaultController {
   public function show(int $id) {
     return Inertia::render('components/crud_views/show', [
       'title' => $this->titles()['show'] ?? '',
-      'fields' => $this->prepareFormFieldsForCrud(
+      'data' => $this->prepareFormFieldsForCrud(
         $this->getModelInstance()->findOrFail($id)
       ),
     ]);
@@ -124,7 +124,7 @@ trait DefaultController {
     return Inertia::render('components/crud_views/edit', [
       'id' => $id,
       'title' => $this->titles()['edit'] ?? '',
-      'fields' => $this->prepareFormFieldsForCrud($record),
+      'data' => $this->prepareFormFieldsForCrud($record),
     ]);
   }
 

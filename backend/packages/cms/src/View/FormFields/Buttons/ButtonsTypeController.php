@@ -10,7 +10,8 @@ class ButtonsTypeController extends BaseField {
 
   protected function controlMap(): array {
     return [
-      //
+      'anchore' => Fields\AnchoreControl::class,
+      'submit' => Fields\SubmitControl::class,
     ];
   }
 
