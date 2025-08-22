@@ -3,8 +3,9 @@ import RenderField from '../cms_fields/RenderField.vue'
 
 const props = defineProps({
   title: String,
-  fields: Array,
+  data: Object,
 })
+console.log(props.data);
 </script>
 
 <template>
@@ -17,12 +18,15 @@ const props = defineProps({
           {{ title }}
         </h1>
         <div class="flex gap-x-2">
-
+          <RenderField v-for="(field, idx) in data.buttons"
+            :key="idx"
+            :field="field"
+          />
         </div>
       </div>
       <div class="w-full mx-auto p-6 shadow rounded-2xl space-y-6 text-gray-200 
         border border-gray-600 flex flex-wrap gap-5 place-items-center">
-        <RenderField v-for="(field, idx) in fields"
+        <RenderField v-for="(field, idx) in data.fields"
           :key="idx"
           :field="field"
         />

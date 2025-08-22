@@ -4,22 +4,19 @@ const props = defineProps({
   name: { type: String, required: true },
   wraper: { type: String, default: '' },
   icone: { type: String, default: '' },
-  route: { type: String, required: true },
+  type: { type: String},
 })
-
-const getHref = () => {
-  return props.route.startsWith('/') ? props.route : '/' + props.route
-}
 </script>
 
 <template>
-  <a :id="name"
+  <button
+    :id="name"
     :name="name"
-    :href="getHref()"
+    :type="type"
     class="flex text-white bg-emerald-600 hover:bg-emerald-500 
       items-center gap-2 px-4 py-2 rounded transition"
-    :class="wraper">
+    :class="[wraper]">
     <i v-if="icone" :class="icone"></i>
     <span>{{ label }}</span>
-  </a>
+  </button>
 </template>
