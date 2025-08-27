@@ -31,7 +31,7 @@ class ParamController extends BaseController {
     return [
       'data' => self::MODEL_CLASS::all(), 
       'labels' => [
-        'Id', 'Name', 'Type', 'Value', 'Created at', 'Updated at', 'Actions',
+        'Id', 'Name', 'Type', 'Value', 'Created at', 'Updated at',
       ],
       'filterable' => [
         'id' => true, 'name' => true, 'type' => true, 'value' => false, 

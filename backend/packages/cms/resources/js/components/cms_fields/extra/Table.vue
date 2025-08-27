@@ -43,6 +43,9 @@ function confirmDelete(event, id) {
             class="px-4 py-3 border border-gray-700">
             <span v-html="label" />
           </th>
+          <th class="px-4 py-3 border border-gray-700">
+            <span>Actions</span>
+          </th>
         </tr>
 
         <tr>
