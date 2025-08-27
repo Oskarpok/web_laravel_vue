@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace User\LaravelCms\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use User\LaravelCms\Traits\DefaultController;
 

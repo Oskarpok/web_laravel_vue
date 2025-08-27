@@ -6,14 +6,12 @@ namespace User\LaravelCms\Http\Controllers\Cms;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use User\LaravelCms\Enums\ParamsType;
-use User\LaravelCms\Http\Controllers\BaseController;
 use User\LaravelCms\View\FormFields\Texts\TextsTypeController;
 use User\LaravelCms\View\FormFields\Select\SelectTypeController;
 use User\LaravelCms\View\FormFields\Buttons\ButtonsTypeController;
 use User\LaravelCms\View\FormFields\DateTime\DateTimeTypeController;
 
-class ParamController extends BaseController {
+class ParamController extends \User\LaravelCms\Http\Controllers\BaseController {
 
   protected const MODEL_CLASS = \User\LaravelCms\Models\Cms\Param::class;
   protected const ROUTE_NAME = 'cms.params.';
@@ -77,7 +75,7 @@ class ParamController extends BaseController {
           'type' => 'select',
           'name' => 'type',
           'label' => 'Type',
-          'options' => ParamsType::toArray() ?? [],
+          'options' => \User\LaravelCms\Enums\ParamsType::toArray() ?? [],
           'required' => true,
           'value' => $data?->type,
           'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
