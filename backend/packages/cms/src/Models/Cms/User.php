@@ -2,8 +2,9 @@
 
 namespace User\LaravelCms\Models\Cms;
 
-use Illuminate\Notifications\Notifiable;
+use User\LaravelCms\Enums\UsersType;
 use User\LaravelCms\Traits\DefaultModel;
+use Illuminate\Notifications\Notifiable;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -49,6 +50,10 @@ class User extends Authenticatable {
       'email_verified_at' => 'datetime',
       'password' => 'hashed',
     ];
+  }
+
+  public function getTypeLabelAttribute(): string {
+    return UsersType::tryFrom($this->type)?->name ?? UsersType::User->name;
   }
 
   public static function validationRules(): array {
