@@ -13,6 +13,8 @@ class TextsTypeController extends BaseField {
       'text' => Fields\TextField::class,
       'text_area' => Fields\TextAreaControl::class,
       'number' => Fields\NumberControl::class,
+      'email' => Fields\EmailControl::class,
+      'phone' => Fields\PhoneControl::class,
     ];
   }
 
