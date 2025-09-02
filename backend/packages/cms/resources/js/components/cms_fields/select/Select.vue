@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, watch } from "vue";
+import Tooltip from '../components/Tooltip.vue'
 
 const props = defineProps({
   label: String,
@@ -50,19 +51,7 @@ function selectOption(key) {
     <label :for="name" 
       class="flex text-sm font-medium text-gray-400 ml-2 mb-1 items-center gap-2">
       <span>{{ label }}</span>
-      <template v-if="tooltip">
-        <div class="relative group">
-          <i class="fa-solid fa-circle-question text-gray-400 cursor-pointer text-xs">
-          </i>
-          <div class="absolute top-1/2 left-full ml-2 -translate-y-1/2 z-10 
-            w-max px-2 py-1 bg-gray-800 text-gray-200 text-xs rounded 
-            shadow-lg opacity-0 group-hover:opacity-100 transition-opacity text-left">
-            <div v-for="(line, i) in tooltip.split('|')" :key="i">
-              {{ line.trim() }}
-            </div>
-          </div>
-        </div>
-      </template>
+      <Tooltip :tooltip="tooltip" />
     </label>
 
     <button

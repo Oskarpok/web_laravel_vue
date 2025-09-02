@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch, computed } from "vue"
+import Tooltip from '../components/Tooltip.vue'
 
 const props = defineProps({
   label: { type: String, required: true },
@@ -26,31 +27,17 @@ watch(inputValue, (val) => {
     localErrors.value.push("To pole jest wymagane")
   }
 })
-
-// tooltip jako tablica linii
-const tooltipLines = computed(() =>
-  props.tooltip ? props.tooltip.split("|").map(l => l.trim()) : []
-)
 </script>
 
 <template>
   <div
     class="mb-3 relative"
-    :class="wraper"
-  >
+    :class="wraper">
     <!-- label -->
-    <label :for="name" class="flex text-sm font-medium text-gray-400 ml-2 mb-1 items-center gap-2">
-      <span>{{ label }}</span>
-      <div v-if="tooltip" class="relative group">
-        <i class="fa-solid fa-circle-question text-gray-400 cursor-pointer text-xs"></i>
-        <div
-          class="absolute top-1/2 left-full ml-2 -translate-y-1/2 z-10 w-max 
-                 px-2 py-1 bg-gray-800 text-gray-200 text-xs rounded 
-                 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity text-left"
-        >
-          <div v-for="line in tooltipLines" :key="line">{{ line }}</div>
-        </div>
-      </div>
+    <label :for="name" class="flex text-sm font-medium text-gray-400 ml-2 
+      mb-1 items-center gap-2">
+      {{ label }}
+      <Tooltip :tooltip="tooltip" />
     </label>
 
     <!-- errors -->
@@ -59,8 +46,7 @@ const tooltipLines = computed(() =>
     </ul>
 
     <!-- input -->
-    <input
-      type="email"
+    <input type="email"
       v-model="inputValue"
       :id="name"
       :name="name"
@@ -70,7 +56,6 @@ const tooltipLines = computed(() =>
       :class="[
         readonly ? 'bg-[#1e293b]' : '',
         localErrors.length ? 'border-red-500' : 'border-gray-600'
-      ]"
-    >
+      ]">
   </div>
 </template>

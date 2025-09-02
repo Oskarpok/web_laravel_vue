@@ -1,21 +1,25 @@
 <script setup>
 import { ref, watch } from 'vue'
+import Tooltip from '../components/Tooltip.vue'
 
 const props = defineProps({
   label: { type: String, required: true },
   name: { type: String, required: true },
-  wraper: { type: String, default: '' },
+  wraper: { type: String },
   value: { type: String, default: '' },
   readonly: { type: Boolean, default: false },
   required: { type: Boolean, default: false },
+  tooltip: { type: String},
 })
 
 const internalValue = ref(props.value)
-
 const emit = defineEmits(['update:value'])
 
 watch(internalValue, (val) => {
   emit('update:value', val)
+})
+watch(() => props.value, (val) => {
+  internalValue.value = val
 })
 </script>
 
@@ -23,8 +27,9 @@ watch(internalValue, (val) => {
   <div class="mb-3 relative" :class="wraper">
     <label
       :for="name"
-      class="block text-sm font-medium text-gray-400 ml-2 mb-1">
+      class="flex text-sm font-medium text-gray-400 ml-2 mb-1 items-center gap-2">
       {{ label }}
+      <Tooltip :tooltip="tooltip" />
     </label>
     <input
       type="datetime-local"
@@ -34,8 +39,7 @@ watch(internalValue, (val) => {
       :required="required"
       v-model="internalValue"
       class="mt-1 w-full border border-gray-600 rounded-xl px-3 py-2
-        text-gray-300 shadow-inner cursor-default focus:outline-none"
-      :class="readonly ? 'bg-[#1e293b]' : '' "
-    />
+      text-gray-300 shadow-inner cursor-default focus:outline-none"
+      :class="readonly ? 'bg-[#1e293b]' : '' "/>
   </div>
 </template>

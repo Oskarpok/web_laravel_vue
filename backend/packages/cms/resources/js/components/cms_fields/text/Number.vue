@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch } from "vue";
+import Tooltip from '../components/Tooltip.vue'
 
 const props = defineProps({
   label: String,
@@ -88,39 +89,27 @@ function onKeyDown(e) {
 
 <template>
   <div class="mb-3 relative" :class="wraper">
-    <label :for="name" class="flex text-sm font-medium text-gray-400 ml-2 mb-1 items-center gap-2">
-      <span>{{ label }}</span>
-      <template v-if="tooltip">
-        <div class="relative group">
-          <i class="fa-solid fa-circle-question text-gray-400 cursor-pointer text-xs"></i>
-          <div
-            class="absolute top-1/2 left-full ml-2 -translate-y-1/2 z-10 w-max 
-            px-2 py-1 bg-gray-800 text-gray-200 text-xs rounded 
-            shadow-lg opacity-0 group-hover:opacity-100 transition-opacity text-left"
-          >
-            <div v-for="(line, i) in tooltip.split('|')" :key="i">
-              {{ line.trim() }}
-            </div>
-          </div>
-        </div>
-      </template>
+    <label :for="name" class="flex text-sm font-medium text-gray-400 ml-2 
+      mb-1 items-center gap-2">
+      {{ label }}
+      <Tooltip :tooltip="tooltip" />
     </label>
 
-    <ul v-if="internalErrors.length" class="text-red-500 text-xs mb-1 ml-2 space-y-0.5">
+    <ul v-if="internalErrors.length" class="text-red-500 text-xs mb-1 ml-2 
+      space-y-0.5">
       <li v-for="err in internalErrors" :key="err">{{ err }}</li>
     </ul>
 
-    <div
-      class="flex items-center border border-gray-600 rounded-xl shadow-inner mt-1"
+    <div class="flex items-center border border-gray-600 rounded-xl 
+      shadow-inner mt-1"
       :class="[
         readonly ? 'bg-[#1e293b]' : '',
         internalErrors.length ? 'border-red-500' : 'border-gray-600',
-      ]"
-    >
-      <input
-        type="text"
+      ]">
+      <input type="text"
         v-model="internalValue"
-        class="w-full bg-transparent text-gray-300 px-3 py-2 rounded-l-xl focus:outline-none"
+        class="w-full bg-transparent text-gray-300 px-3 py-2 rounded-l-xl 
+          focus:outline-none"
         :class="readonly ? 'cursor-default' : ''"
         :id="name"
         :name="name"
@@ -129,28 +118,23 @@ function onKeyDown(e) {
         :max="max"
         :min="min"
         inputmode="decimal"
-        @keydown="onKeyDown"
-      />
+        @keydown="onKeyDown"/>
 
       <div class="flex flex-col">
-        <button
-          type="button"
+        <button type="button"
           @click="internalValue = Number(internalValue) + step"
           class="text-[#898d95] px-1 py-0.5 text-xs rounded-tr-xl"
           :class="readonly ? 'cursor-default' : 'hover:text-[#d1d5dc]'"
           aria-label="Increment"
-          :disabled="readonly"
-        >
+          :disabled="readonly">
           ▲
         </button>
-        <button
-          type="button"
+        <button type="button"
           @click="internalValue = Number(internalValue) - step"
           class="text-[#898d95] px-1 py-0.4 text-xs rounded-br-xl"
           :class="readonly ? 'cursor-default' : 'hover:text-[#d1d5dc]'"
           aria-label="Decrement"
-          :disabled="readonly"
-        >
+          :disabled="readonly">
           ▼
         </button>
       </div>
@@ -159,7 +143,6 @@ function onKeyDown(e) {
 </template>
 
 <style scoped>
-/* Usunięcie strzałek w number input */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
