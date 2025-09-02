@@ -53,7 +53,6 @@ watch(inputValue, (val) => {
       :class="[
         readonly ? 'bg-[#1e293b]' : '',
         validationErrors.length ? 'border-red-500' : 'border-gray-600'
-      ]"
-    />
+      ]"/>
   </div>
 </template>

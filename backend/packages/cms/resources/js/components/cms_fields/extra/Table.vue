@@ -75,7 +75,7 @@ function confirmDelete(event, id) {
         <tr v-for="row in data" :key="row.id" class="hover:bg-gray-800">
           <td v-for="(enabled, key) in filterable" :key="key" 
             class="px-3 py-2 border border-gray-700">
-            {{ row[key] }}
+            {{ row[key + '_label'] ?? row[key] }}
           </td>
           
           <td class="w-27 px-4 py-2 border border-gray-700 text-center space-x-2">
