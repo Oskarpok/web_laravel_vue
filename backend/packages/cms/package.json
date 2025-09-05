@@ -18,7 +18,7 @@
   "dependencies": {
     "@inertiajs/vue3": "^2.1.2",
     "axios": "^1.11.0",
-    "dotenv": "^17.2.1",
+    "dotenv": "^17.2.2",
     "vue": "^3.4.0",
     "vue-router": "^4.5.1"
   }
