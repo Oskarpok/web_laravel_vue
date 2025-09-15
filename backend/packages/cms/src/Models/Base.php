@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace User\LaravelCms\Models;
 
-use Illuminate\Http\Request;
 use User\LaravelCms\Traits\DefaultModel;
 use Illuminate\Database\Eloquent\Model;
 

@@ -23,7 +23,7 @@ class ParamsSeeder extends Seeder {
     ]);
     Param::create([
       'name' => 'telefon',
-      'type' => ParamsType::Integer->value,
+      'type' => ParamsType::String->value,
       'val_int' => '123456789',
     ]);
     Param::create([

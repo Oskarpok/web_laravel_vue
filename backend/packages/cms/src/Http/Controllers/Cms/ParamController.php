@@ -27,7 +27,7 @@ class ParamController extends \User\LaravelCms\Http\Controllers\BaseController {
 
   protected function indexPrepare(Request $request): array {
     return [
-      'data' => self::MODEL_CLASS::all()->append('type_label'), 
+      'data' => self::MODEL_CLASS::all()->append(['type_label', 'value']), 
       'labels' => [
         'Id', 'Name', 'Type', 'Value', 'Created at', 'Updated at',
       ],
