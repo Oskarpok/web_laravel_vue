@@ -6,6 +6,7 @@ namespace User\LaravelCms\Http\Controllers\Cms;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use User\LaravelCms\Enums\UsersType;
 use User\LaravelCms\View\FormFields\Texts\TextsTypeController;
 use User\LaravelCms\View\FormFields\Select\SelectTypeController;
 use User\LaravelCms\View\FormFields\Buttons\ButtonsTypeController;
@@ -110,7 +111,7 @@ class UserController extends \User\LaravelCms\Http\Controllers\BaseController {
           'type' => 'select',
           'name' => 'type',
           'label' => 'Type',
-          'options' => \User\LaravelCms\Enums\UsersType::toArray() ?? [],
+          'options' => UsersType::toArray() ?? [],
           'required' => true,
           'value' => $data?->type,
           'readonly' => $currentRoute !== self::ROUTE_NAME . 'show' 
